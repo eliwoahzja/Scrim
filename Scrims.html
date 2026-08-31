@@ -41,6 +41,774 @@ position: relative;
 padding: 16px 16px 100px;
 }
 
+.header-wrapper {
+position: sticky;
+top: 12px;
+z-index: 100;
+margin-bottom: 16px;
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header {
+text-align: center;
+padding: 18px 20px;
+border-radius: 28px;
+background: var(--glass-bg);
+backdrop-filter: blur(20px) saturate(180%);
+-webkit-backdrop-filter: blur(20px) saturate(180%);
+border: 1px solid var(--glass-border);
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+            inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header h1 {
+font-size: 24px;
+font-weight: 800;
+letter-spacing: -0.03em;
+color: var(--text);
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header p {
+font-size: 12px;
+color: var(--muted);
+margin-top: 4px;
+letter-spacing: 0.02em;
+opacity: 1;
+max-height: 20px;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-wrapper.scrolled {
+top: 8px;
+}
+
+.header-wrapper.scrolled .header {
+padding: 10px 20px;
+border-radius: 40px;
+background: rgba(20, 20, 20, 0.75);
+backdrop-filter: blur(28px) saturate(200%);
+-webkit-backdrop-filter: blur(28px) saturate(200%);
+box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6),
+            inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.25);
+border-color: rgba(255, 255, 255, 0.18);
+width: fit-content;
+margin: 0 auto;
+}
+
+.header-wrapper.scrolled .header h1 {
+font-size: 16px;
+letter-spacing: -0.01em;
+}
+
+.header-wrapper.scrolled .header p {
+opacity: 0;
+max-height: 0;
+margin-top: 0;
+overflow: hidden;
+}
+
+.tabs {
+display: flex;
+gap: 4px;
+background: var(--card);
+border: 1px solid var(--divider);
+border-radius: 14px;
+padding: 4px;
+margin-bottom: 20px;
+}
+
+.tab {
+flex: 1;
+padding: 10px 0;
+text-align: center;
+font-size: 12px;
+font-weight: 600;
+text-transform: capitalize;
+border: none;
+background: none;
+color: var(--muted);
+border-radius: 10px;
+cursor: pointer;
+transition: all 0.25s ease;
+}
+
+.tab.active {
+background: var(--gold-dim);
+color: var(--gold);
+}
+
+.card {
+background: var(--card);
+border: 1px solid var(--card-border);
+border-radius: 20px;
+overflow: hidden;
+}
+
+.hero-img {
+width: 100%;
+aspect-ratio: 1;
+object-fit: cover;
+display: block;
+background: #111;
+}
+
+.hero-overlay {
+position: relative;
+}
+
+.hero-overlay::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 50%;
+background: linear-gradient(to top, var(--card), transparent);
+pointer-events: none;
+}
+
+.hero-title {
+position: absolute;
+bottom: 16px;
+left: 16px;
+font-size: 20px;
+font-weight: 800;
+letter-spacing: -0.02em;
+z-index: 1;
+}
+
+.hero-stats {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+border-top: 1px solid var(--divider);
+}
+
+.hero-stat {
+text-align: center;
+padding: 12px 8px;
+}
+
+.hero-stat + .hero-stat {
+border-left: 1px solid var(--divider);
+}
+
+.hero-stat-label {
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: var(--muted);
+opacity: 0.6;
+}
+
+.hero-stat-value {
+font-size: 14px;
+font-weight: 700;
+margin-top: 2px;
+}
+
+.hero-disclaimer {
+padding: 10px 14px;
+font-size: 11px;
+text-align: center;
+justify-content: center;
+border-top: 1px solid var(--divider);
+line-height: 1.4;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.hero-disclaimer svg {
+width: 13px;
+height: 13px;
+flex-shrink: 0;
+}
+
+.hero-disclaimer.status-warn {
+color: var(--red);
+}
+
+.hero-disclaimer.status-ok {
+color: #22c55e;
+}
+
+.section {
+display: flex;
+align-items: center;
+gap: 8px;
+margin: 24px 0 8px;
+}
+
+.section:first-child { margin-top: 0; }
+
+.section-icon {
+width: 14px;
+height: 14px;
+color: var(--gold);
+opacity: 0.7;
+}
+
+.section-label {
+font-size: 11px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--muted);
+opacity: 0.7;
+}
+
+.section-count {
+margin-left: auto;
+font-size: 11px;
+color: var(--muted);
+opacity: 0.4;
+}
+
+.row {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.row:last-child { border-bottom: none; }
+
+.avatar {
+width: 32px;
+height: 32px;
+border-radius: 10px;
+background: var(--gold-dim);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+font-weight: 800;
+color: var(--gold);
+flex-shrink: 0;
+}
+
+.row-name {
+font-size: 13px;
+font-weight: 500;
+}
+
+.kv {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+font-size: 13px;
+}
+
+.kv:last-child { border-bottom: none; }
+.kv-label { color: var(--muted); }
+.kv-value { font-weight: 600; }
+.kv-value.gold { color: var(--gold); }
+
+.team-row {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.team-row:last-child { border-bottom: none; }
+
+.team-row.ghr {
+background: var(--gold-glow);
+}
+
+.team-num {
+width: 24px;
+text-align: right;
+font-size: 11px;
+font-weight: 700;
+color: var(--muted);
+opacity: 0.4;
+}
+
+.team-name {
+font-size: 13px;
+font-weight: 500;
+}
+
+.team-row.ghr .team-name {
+font-weight: 800;
+color: var(--gold);
+}
+
+.team-badge {
+margin-left: auto;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 0.05em;
+color: var(--gold);
+background: var(--gold-dim);
+border: 1px solid rgba(212,168,67,0.15);
+padding: 2px 8px;
+border-radius: 6px;
+}
+
+.prize-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.prize-row:last-child { border-bottom: none; }
+
+.prize-rank {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 28px;
+height: 28px;
+border-radius: 8px;
+background: var(--gold-dim);
+font-size: 11px;
+font-weight: 800;
+color: var(--gold);
+}
+
+.prize-amount {
+font-size: 14px;
+font-weight: 700;
+color: var(--gold);
+}
+
+.rule-group {
+border: 1px solid var(--card-border);
+border-radius: 14px;
+overflow: hidden;
+margin-bottom: 6px;
+}
+
+.rule-toggle {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+background: none;
+border: none;
+color: var(--text);
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+text-align: left;
+}
+
+.rule-toggle:hover {
+background: rgba(255,255,255,0.02);
+}
+
+.rule-chevron {
+width: 16px;
+height: 16px;
+color: var(--muted);
+opacity: 0.5;
+transition: transform 0.2s;
+}
+
+.rule-group.open .rule-chevron {
+transform: rotate(180deg);
+}
+
+.rule-items {
+display: none;
+border-top: 1px solid var(--divider);
+padding: 8px 16px 12px;
+}
+
+.rule-group.open .rule-items {
+display: block;
+}
+
+.rule-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+padding: 5px 0;
+font-size: 12.5px;
+color: var(--muted);
+line-height: 1.5;
+}
+
+.rule-dot {
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background: var(--gold);
+opacity: 0.45;
+flex-shrink: 0;
+margin-top: 7px;
+}
+
+.ban-header {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 8px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.ban-icon {
+width: 12px;
+height: 12px;
+color: var(--red);
+opacity: 0.8;
+}
+
+.ban-label {
+font-size: 11px;
+font-weight: 700;
+color: var(--red);
+opacity: 0.85;
+}
+
+.ban-team {
+padding: 9px 16px;
+border-bottom: 1px solid var(--divider);
+font-size: 13px;
+color: var(--muted);
+}
+
+.ban-team:last-child { border-bottom: none; }
+
+.link-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+font-size: 13px;
+color: var(--gold);
+text-decoration: none;
+transition: background 0.15s;
+}
+
+.link-row:hover {
+background: rgba(255,255,255,0.02);
+}
+
+.link-arrow {
+font-size: 11px;
+color: var(--muted);
+opacity: 0.4;
+}
+
+.empty {
+padding: 32px 16px;
+text-align: center;
+font-size: 13px;
+color: var(--muted);
+opacity: 0.5;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="app">
+<div class="header-wrapper" id="headerWrapper">
+  <div class="header">
+    <h1>GHR Scrims</h1>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+<button class="tab active" data-tab="main">Main</button>
+<button class="tab" data-tab="joker">Joker</button>
+<button class="tab" data-tab="legacy">Legacy</button>
+</div>
+
+<div id="content"></div>
+</div>
+
+<script>
+const LOGOS = {
+main: "https://i.imgur.com/SbUNfjJ.jpg",
+joker: "https://i.imgur.com/kCJ8VZh.jpg",
+legacy: "https://i.imgur.com/ZrrmHSD.jpg"
+};
+
+const GHR = {
+main: {
+time: "8:00 PM", slot: "Slot 14", team: "GHR MAIN",
+players: ["GHR IAN", "GHR JAY", "GHR JAN", "GHR BREN"],
+r1: "-", r2: "-", r3: "-",
+disclaimer: "This is the possible start; the website will update itself once it's stated."
+},
+joker: {
+time: "10:00 PM", slot: "Slot 17", team: "GHR JOKER",
+players: ["GHR KYLLE", "GHR LEE", "GHR JAMES", "GHR RAIN"],
+r1: "-", r2: "-", r3: "-",
+disclaimer: "This is the possible start; the website will update itself once it's stated."
+},
+legacy: {
+time: "8:00 PM", slot: "Slot 15", team: "GHR LEGACY",
+players: ["GHR JAKE", "GHR MITZI", "GHR ANDREI"],
+r1: "-", r2: "-", r3: "-",
+disclaimer: "This is the possible start; the website will update itself once it's stated."
+}
+};
+
+function classifyDisclaimer(text) {
+const t = (text || "").toLowerCase();
+const okWords = ["confirmed","final","accurate","verified","correct","official","locked in","stated"];
+const warnWords = ["possible","may","might","tentative","unconfirmed","subject to change","not final","pending","update","estimate","approximate","tbd","to be"];
+let okScore = 0, warnScore = 0;
+okWords.forEach(w => { if (t.includes(w)) okScore++; });
+warnWords.forEach(w => { if (t.includes(w)) warnScore++; });
+return warnScore >= okScore ? "warn" : "ok";
+}
+
+const SCRIMS = {
+main: {
+title: "4GS BR Scrimmage",
+info: [
+{label:"Date",value:"August 31, 2026"},{label:"Rounds",value:"3"},{label:"Map",value:"ISO – BO – ISO"},
+{label:"Open room",value:"8:00 PM"},{label:"Time start",value:"To be followed"}
+],
+prizes: [{place:1,amount:"₱500"},{place:2,amount:"₱300"},{place:3,amount:"₱200"}],
+teams: ["ADMIN","ENT | ENTREPRENUER","PHS DK","DNK UNBOUND","XZE | sB","NZ MAIN","DE MAIN","3NT SULASOK","LG RAW","UA MAIN","GLS BB","LS LAST STANDING","NE MAIN","GHR MAIN","NH ACSENED","PRISO MAIN","SE MAIN","TPM PRIMADORDIALS","SVE MAIN","AST MAIN","THA BOYS","DKE MAIN","AT CRIMSON","PE | MAIN","CRE PHANTOM"],
+bans: [
+{duration:"2 game days",teams:["SBD MAIN","SBD UNBO","RXU PHANTOMS"]},
+{duration:"3 game days",teams:["TNS","DSE"]}
+],
+points: [],
+rules: [
+{heading:"General Rules",items:["Only admins can edit the list","Please follow right mine system","Check pinned BR rules","Streamer Mode (S-MODE) auto kick","No clan tag — kick","Wrong slot — void score"]}
+],
+links: []
+},
+joker: {
+title: "10PM F1 Scrimmage",
+info: [
+{label:"Date",value:"August 31, 2026"},{label:"Rounds",value:"3"},{label:"Map",value:"ISO – BO – ISO"},
+{label:"Open room",value:"10:00 PM"},{label:"Time start",value:"10:15 PM"}
+],
+prizes: [],
+teams: ["69 MAIN","69 REAPER","WL MAIN","WL JOKER","IV MAIN","EXL HYDRA","CE KNIGHTS","CE PHANTOM","6RE MAIN","9INE JOKER","AZR MAIN","VEX UNBO","RIE ALPHA","RRQ MAIN","NYG JOKER","NYG MAIN","GHR JOKER","STEPBRO MT","ZE MAIN","ADMIN SAMII","ADMIN SAMII","ADMIN SAMII","LÈ OVERLOAD","LÈ REV","LÈ MAIN"],
+bans: [
+{duration:"Permanent",teams:["HL [AT]","4CB [AT]","IRE [AT]","SUPERIOR KINGS [AT]","JAN ZHEN","KAEDEHARD [AT]"]}
+],
+points: [],
+rules: [
+{heading:"Posting rules",items:["Only admins can edit the list"]}
+],
+links: [{label:"Facebook Rules Post",url:"https://www.facebook.com/share/p/1F3vex3hD2/?mibextid=wwXIfr"}]
+},
+legacy: {
+title: "Redemption Esports 8PM Scrim",
+info: [
+{label:"Date",value:"August 31, 2026"},{label:"Rounds",value:"3"},{label:"Map",value:"ISO – BO – ISO"},
+{label:"Open room",value:"8:00 PM"},{label:"Time start",value:"8:10 PM"}
+],
+prizes: [],
+teams: ["RED ROYALE","RED DUKE","SNC TEST TEAM","AVE MAIN","AVE LIGHT","4SEN MAIN","4SEN JOKER","NXR MAIN","NXR JOKER","NK TOMBOPIPS","ZE UNBOUND","ZE NEMESIS","SVR UNBOUND","SVR BLITZ","GHR LEGACY","TF MAIN","VFE MAIN","VFE UNBO","ZKC APOCALYPSE","NS MAIN","ACE HELIOS","KOS MAIN","KOS UNBO","FRG TAMBAY BOYS","RGS MAIN"],
+bans: [],
+points: [{label:"1 kill",value:"2 pts"},{label:"Top 1",value:"10 pts"},{label:"Top 2",value:"7 pts"},{label:"Top 3",value:"5 pts"}],
+rules: [
+{heading:"Posting rules",items:["Do not edit the list","Kindly mention the admins for changes or cancellations"]},
+{heading:"General",items:["No trash talk","No execution","No tank, jackal, or hoverbike","No cheating","No emulator","No rage quitting","No team up","No bug abuse","No streamer mode","Ballistic weapons are allowed","Account level must be 150+"]},
+{heading:"Penalties and violations",items:["No proof — invalid","Wrong slot — void round score","Not in the list — void round score","Trash talk — kick"]},
+{heading:"Cancellation and banning",items:["Late cancellation — 1 day","No show for 2 rounds — 2 days","No show for 3 rounds — 3 days","Disrespect towards admins and players — permanent ban"]}
+],
+links: []
+}
+};
+
+function initials(name) {
+return name.trim().split(/\s+/).slice(0,2).map(w => w[0]?.toUpperCase()||"").join("");
+}
+
+function renderContent(tab) {
+const ghr = GHR[tab];
+const scrim = SCRIMS[tab];
+const el = document.getElementById("content");
+
+let html = `
+<div class="card">
+<div class="hero-overlay">
+<img class="hero-img" src="${ghr.logo || LOGOS[tab]}" alt="${ghr.team}" referrerpolicy="no-referrer" loading="lazy">
+<div class="hero-title">${ghr.team}</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat">
+<div class="hero-stat-label">Time</div>
+<div class="hero-stat-value">${ghr.time}</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-label">Slot</div>
+<div class="hero-stat-value">${ghr.slot}</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-label">Roster</div>
+<div class="hero-stat-value">${ghr.players.length}</div>
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat">
+<div class="hero-stat-label">R1</div>
+<div class="hero-stat-value">${ghr.r1}</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-label">R2</div>
+<div class="hero-stat-value">${ghr.r2}</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-label">R3</div>
+<div class="hero-stat-value">${ghr.r3}</div>
+</div>
+</div>
+<div class="hero-disclaimer status-${classifyDisclaimer(ghr.disclaimer)}">
+${classifyDisclaimer(ghr.disclaimer) === "ok"
+? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>'
+: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'}
+<span>${ghr.disclaimer}</span>
+</div>
+</div>
+
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span class="section-label">Lineup</span>
+</div>
+<div class="card">
+${ghr.players.map(p => `
+<div class="row">
+<div class="avatar">${initials(p)}</div>
+<span class="row-name">${p}</span>
+</div>
+`).join("")}
+</div>
+`;
+
+if (scrim) {
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<span class="section-label">Match</span>
+</div>
+<div class="card">
+<div class="kv" style="border-bottom:1px solid var(--divider)">
+<span class="kv-label">Scrim</span>
+<span class="kv-value gold">${scrim.title}</span>
+</div>
+${scrim.info.map(r => `
+<div class="kv">
+<span class="kv-label">${r.label}</span>
+<span class="kv-value">${r.value}</span>
+</div>
+`).join("")}
+</div>
+`;
+
+if (scrim.prizes.length) {
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+<span class="section-label">Prize Pool</span>
+</div>
+<div class="card">
+${scrim.prizes.map(p => `
+<div class="prize-row">
+<div class="prize-rank">${p.place===1?"1st":p.place===2?"2nd":"3rd"}</div>
+<span class="prize-amount">${p.amount}</span>
+</div>
+`).join("")}
+</div>
+`;
+}
+
+if (scrim.points.length) {
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14.5 17.5 3 3 1.5-1.5"/><path d="M17 3l4 4"/><path d="M21 3l-4 4"/><path d="M3 21l4-4"/><path d="m7 17-4 4"/><path d="m14 3 7 7"/></svg>
+<span class="section-label">Point System</span>
+</div>
+<div class="card">
+${scrim.points.map(p => `
+<div class="kv">
+<span class="kv-label">${p.label}</span>
+<span class="kv-value">${p.value}</span>
+</div>
+`).join("")}
+</div>
+`;
+}
+
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span class="section-label">Teams</span>
+<span class="section-count">${scrim.teams.length}</span>
+</div>
+<div class="card">
+${scrim.teams.map((t,i) => {
+const isGhr = t.toUpperCase().startsWith("GHR");
+return `
+<div class="team-row${isGhr?" ghr":""}">
+<span class="team-num">${String(i+1).padStart(2,"0")}</span>
+<span class="team-name">${t}</span>
+${isGhr ? '<span class="team-badge">GHR</span>' : ''}
+</div>
+`;
+}).join("")}
+</div>
+`;
+
+if (scrim.bans.length) {
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--red)"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+<span class="section-label">Banned Teams</span>
+</div>
+<div class="card">
+${scrim.bans.map(b => `
+<div class="ban-header">
+<svg class="ban-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+<span class="ban-label">${b.duration} ban</span>
+</div>
+${b.teams.map(t => `<div class="ban-team">${t}</div>`).join("")}
+`).join("")}
+</div>
+`;
+}
+
+if (scrim.links && scrim.links.length) {
+html += `
+<div class="section">
+<svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+<span class="section-label">Links</span>
+</div>
+<div class="card">
+${scrim.links.map(l => `
+<a class="link-row" href="${l.url}" target="_blank" rel="noopener">
+${l.label}
+<span class="link-arrow">↗</span>
+</a>
+`).join("")}
+</div>
+`;
+}
+
+html += `
+<div max-width: 480px;
+margin: 0 auto;
+min-height: 100dvh;
+position: relative;
+padding: 16px 16px 100px;
+}
+
 /* Sticky Liquid Glass Header Container */
 .header-wrapper {
 position: sticky;
