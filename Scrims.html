@@ -563,6 +563,561 @@ info: [
 {label:"Open room",value:"8:00 PM"},{label:"Time start",value:"To be followed"}
 ],
 prizes: [{place:1,amount:"₱500"},{place:2,amount:"₱300"},{place:3,amount:"₱200"}],
+teams: ["ADMIN"<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0a0a">
+<title>GHR Scrims</title>
+<style>
+:root {
+--bg: #0a0a0a;
+--card: #141414;
+--card-border: rgba(255,255,255,0.06);
+--text: #f0f0f0;
+--muted: #737373;
+--gold: #d4a843;
+--gold-dim: rgba(212,168,67,0.12);
+--gold-glow: rgba(212,168,67,0.06);
+--red: #ef4444;
+--red-dim: rgba(239,68,68,0.1);
+--divider: rgba(255,255,255,0.06);
+--glass-bg: rgba(20, 20, 20, 0.65);
+--glass-border: rgba(255, 255, 255, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+background: var(--bg);
+color: var(--text);
+font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+-webkit-font-smoothing: antialiased;
+min-height: 100dvh;
+}
+
+.app {
+max-width: 480px;
+margin: 0 auto;
+min-height: 100dvh;
+position: relative;
+padding: 16px 16px 100px;
+}
+
+/* Sticky Liquid Glass Header Container */
+.header-wrapper {
+position: sticky;
+top: 12px;
+z-index: 100;
+margin-bottom: 16px;
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Liquid Glass Header Element */
+.header {
+text-align: center;
+padding: 18px 20px;
+border-radius: 28px;
+background: var(--glass-bg);
+backdrop-filter: blur(20px) saturate(180%);
+-webkit-backdrop-filter: blur(20px) saturate(180%);
+border: 1px solid var(--glass-border);
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+            inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header h1 {
+font-size: 24px;
+font-weight: 800;
+letter-spacing: -0.03em;
+color: var(--text);
+transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header p {
+font-size: 12px;
+color: var(--muted);
+margin-top: 4px;
+letter-spacing: 0.02em;
+opacity: 1;
+max-height: 20px;
+transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Collapsed Dynamic State on Scroll */
+.header-wrapper.scrolled {
+top: 8px;
+}
+
+.header-wrapper.scrolled .header {
+padding: 10px 20px;
+border-radius: 40px;
+background: rgba(20, 20, 20, 0.75);
+backdrop-filter: blur(28px) saturate(200%);
+-webkit-backdrop-filter: blur(28px) saturate(200%);
+box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6),
+            inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.25);
+border-color: rgba(255, 255, 255, 0.18);
+width: fit-content;
+margin: 0 auto;
+}
+
+.header-wrapper.scrolled .header h1 {
+font-size: 16px;
+letter-spacing: -0.01em;
+}
+
+.header-wrapper.scrolled .header p {
+opacity: 0;
+max-height: 0;
+margin-top: 0;
+overflow: hidden;
+}
+
+/* Tabs */
+.tabs {
+display: flex;
+gap: 4px;
+background: var(--card);
+border: 1px solid var(--divider);
+border-radius: 14px;
+padding: 4px;
+margin-bottom: 20px;
+}
+
+.tab {
+flex: 1;
+padding: 10px 0;
+text-align: center;
+font-size: 12px;
+font-weight: 600;
+text-transform: capitalize;
+border: none;
+background: none;
+color: var(--muted);
+border-radius: 10px;
+cursor: pointer;
+transition: all 0.25s ease;
+}
+
+.tab.active {
+background: var(--gold-dim);
+color: var(--gold);
+}
+
+/* Cards */
+.card {
+background: var(--card);
+border: 1px solid var(--card-border);
+border-radius: 20px;
+overflow: hidden;
+}
+
+/* Hero */
+.hero-img {
+width: 100%;
+aspect-ratio: 1;
+object-fit: cover;
+display: block;
+background: #111;
+}
+
+.hero-overlay {
+position: relative;
+}
+
+.hero-overlay::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 50%;
+background: linear-gradient(to top, var(--card), transparent);
+pointer-events: none;
+}
+
+.hero-title {
+position: absolute;
+bottom: 16px;
+left: 16px;
+font-size: 20px;
+font-weight: 800;
+letter-spacing: -0.02em;
+z-index: 1;
+}
+
+.hero-stats {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+border-top: 1px solid var(--divider);
+}
+
+.hero-stat {
+text-align: center;
+padding: 12px 8px;
+}
+
+.hero-stat + .hero-stat {
+border-left: 1px solid var(--divider);
+}
+
+.hero-stat-label {
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: var(--muted);
+opacity: 0.6;
+}
+
+.hero-stat-value {
+font-size: 14px;
+font-weight: 700;
+margin-top: 2px;
+}
+
+/* Section headers */
+.section {
+display: flex;
+align-items: center;
+gap: 8px;
+margin: 24px 0 8px;
+}
+
+.section:first-child { margin-top: 0; }
+
+.section-icon {
+width: 14px;
+height: 14px;
+color: var(--gold);
+opacity: 0.7;
+}
+
+.section-label {
+font-size: 11px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(--muted);
+opacity: 0.7;
+}
+
+.section-count {
+margin-left: auto;
+font-size: 11px;
+color: var(--muted);
+opacity: 0.4;
+}
+
+/* List rows */
+.row {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.row:last-child { border-bottom: none; }
+
+.avatar {
+width: 32px;
+height: 32px;
+border-radius: 10px;
+background: var(--gold-dim);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+font-weight: 800;
+color: var(--gold);
+flex-shrink: 0;
+}
+
+.row-name {
+font-size: 13px;
+font-weight: 500;
+}
+
+/* KV rows */
+.kv {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+font-size: 13px;
+}
+
+.kv:last-child { border-bottom: none; }
+.kv-label { color: var(--muted); }
+.kv-value { font-weight: 600; }
+.kv-value.gold { color: var(--gold); }
+
+/* Teams */
+.team-row {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 9px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.team-row:last-child { border-bottom: none; }
+
+.team-row.ghr {
+background: var(--gold-glow);
+}
+
+.team-num {
+width: 24px;
+text-align: right;
+font-size: 11px;
+font-weight: 700;
+color: var(--muted);
+opacity: 0.4;
+}
+
+.team-name {
+font-size: 13px;
+font-weight: 500;
+}
+
+.team-row.ghr .team-name {
+font-weight: 800;
+color: var(--gold);
+}
+
+.team-badge {
+margin-left: auto;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 0.05em;
+color: var(--gold);
+background: var(--gold-dim);
+border: 1px solid rgba(212,168,67,0.15);
+padding: 2px 8px;
+border-radius: 6px;
+}
+
+/* Prize */
+.prize-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.prize-row:last-child { border-bottom: none; }
+
+.prize-rank {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 28px;
+height: 28px;
+border-radius: 8px;
+background: var(--gold-dim);
+font-size: 11px;
+font-weight: 800;
+color: var(--gold);
+}
+
+.prize-amount {
+font-size: 14px;
+font-weight: 700;
+color: var(--gold);
+}
+
+/* Rules */
+.rule-group {
+border: 1px solid var(--card-border);
+border-radius: 14px;
+overflow: hidden;
+margin-bottom: 6px;
+}
+
+.rule-toggle {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+background: none;
+border: none;
+color: var(--text);
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+text-align: left;
+}
+
+.rule-toggle:hover {
+background: rgba(255,255,255,0.02);
+}
+
+.rule-chevron {
+width: 16px;
+height: 16px;
+color: var(--muted);
+opacity: 0.5;
+transition: transform 0.2s;
+}
+
+.rule-group.open .rule-chevron {
+transform: rotate(180deg);
+}
+
+.rule-items {
+display: none;
+border-top: 1px solid var(--divider);
+padding: 8px 16px 12px;
+}
+
+.rule-group.open .rule-items {
+display: block;
+}
+
+.rule-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+padding: 5px 0;
+font-size: 12.5px;
+color: var(--muted);
+line-height: 1.5;
+}
+
+.rule-dot {
+width: 4px;
+height: 4px;
+border-radius: 50%;
+background: var(--gold);
+opacity: 0.45;
+flex-shrink: 0;
+margin-top: 7px;
+}
+
+/* Bans */
+.ban-header {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 8px 16px;
+border-bottom: 1px solid var(--divider);
+}
+
+.ban-icon {
+width: 12px;
+height: 12px;
+color: var(--red);
+opacity: 0.8;
+}
+
+.ban-label {
+font-size: 11px;
+font-weight: 700;
+color: var(--red);
+opacity: 0.85;
+}
+
+.ban-team {
+padding: 9px 16px;
+border-bottom: 1px solid var(--divider);
+font-size: 13px;
+color: var(--muted);
+}
+
+.ban-team:last-child { border-bottom: none; }
+
+/* Links */
+.link-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 16px;
+font-size: 13px;
+color: var(--gold);
+text-decoration: none;
+transition: background 0.15s;
+}
+
+.link-row:hover {
+background: rgba(255,255,255,0.02);
+}
+
+.link-arrow {
+font-size: 11px;
+color: var(--muted);
+opacity: 0.4;
+}
+
+/* Empty state */
+.empty {
+padding: 32px 16px;
+text-align: center;
+font-size: 13px;
+color: var(--muted);
+opacity: 0.5;
+}
+
+/* Tab content */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="app">
+<div class="header-wrapper" id="headerWrapper">
+  <div class="header">
+    <h1>GHR Scrims</h1>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+<button class="tab active" data-tab="main">Main</button>
+<button class="tab" data-tab="joker">Joker</button>
+<button class="tab" data-tab="legacy">Legacy</button>
+</div>
+
+<div id="content"></div>
+</div>
+
+<script>
+const LOGOS = {
+main: "https://i.imgur.com/SbUNfjJ.jpeg",
+joker: "https://i.imgur.com/kCJ8VZh.jpeg",
+legacy: "https://i.imgur.com/ZrrmHSD.jpeg"
+};
+
+const GHR = {
+main: {
+time: "8:00 PM", slot: "Slot 14", team: "GHR MAIN",
+players: ["GHR IAN", "GHR JAY", "GHR JAN", "GHR BREN"]
+},
+joker: {
+time: "10:00 PM", slot: "Slot 17", team: "GHR JOKER",
+players: ["GHR KYLLE", "GHR LEE", "GHR JAMES", "GHR RAIN"]
+},
+legacy: {
+time: "8:00 PM", slot: "Slot 15", team: "GHR LEGACY",
+players: ["GHR JAKE", "GHR MITZI", "GHR ANDREI"]
+}
+};
+
+const SCRIMS = {
+main: {
+title: "4GS BR Scrimmage",
+info: [
+{label:"Date",value:"August 31, 2026"},{label:"Rounds",value:"3"},{label:"Map",value:"ISO – BO – ISO"},
+{label:"Open room",value:"8:00 PM"},{label:"Time start",value:"To be followed"}
+],
+prizes: [{place:1,amount:"₱500"},{place:2,amount:"₱300"},{place:3,amount:"₱200"}],
 teams: ["ADMIN","ENT | ENTREPRENUER","PHS DK","DNK UNBOUND","XZE | sB","NZ MAIN","DE MAIN","3NT SULASOK","LG RAW","UA MAIN","GLS BB","LS LAST STANDING","NE MAIN","GHR MAIN","NH ACSENED","PRISO MAIN","SE MAIN","TPM PRIMADORDIALS","SVE MAIN","AST MAIN","THA BOYS","DKE MAIN","AT CRIMSON","PE | MAIN","CRE PHANTOM"],
 bans: [
 {duration:"2 game days",teams:["SBD MAIN","SBD UNBO","RXU PHANTOMS"]},
@@ -623,7 +1178,7 @@ const el = document.getElementById("content");
 let html = `
 <div class="card">
 <div class="hero-overlay">
-<img class="hero-img" src="${ghr.logo || LOGOS[tab]}" alt="${ghr.team}">
+<img class="hero-img" src="${ghr.logo || LOGOS[tab]}" alt="${ghr.team}" onerror="this.style.display='none'">
 <div class="hero-title">${ghr.team}</div>
 </div>
 <div class="hero-stats">
@@ -639,23 +1194,6 @@ let html = `
 <div class="hero-stat-label">Roster</div>
 <div class="hero-stat-value">${ghr.players.length}</div>
 </div>
-</div>
-<div class="hero-stats">
-<div class="hero-stat">
-<div class="hero-stat-label">R1</div>
-<div class="hero-stat-value">TBD</div>
-</div>
-<div class="hero-stat">
-<div class="hero-stat-label">R2</div>
-<div class="hero-stat-value">TBD</div>
-</div>
-<div class="hero-stat">
-<div class="hero-stat-label">R3</div>
-<div class="hero-stat-value">TBD</div>
-</div>
-</div>
-<div class="hero-disclaimer">
-This is the possible start; the website will update itself once it's started.
 </div>
 </div>
 
@@ -821,7 +1359,26 @@ el.innerHTML = html;
 const headerWrapper = document.getElementById('headerWrapper');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 20) {
-    headerWrapper.clas,"PRISO MAIN","SE MAIN","TPM PRIMADORDIALS","SVE MAIN","AST MAIN","THA BOYS","DKE MAIN","AT CRIMSON","PE | MAIN","CRE PHANTOM"],
+    headerWrapper.classList.add('scrolled');
+  } else {
+    headerWrapper.classList.remove('scrolled');
+  }
+});
+
+// Tab switching
+document.querySelectorAll(".tab").forEach(btn => {
+btn.addEventListener("click", () => {
+document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+btn.classList.add("active");
+renderContent(btn.dataset.tab);
+});
+});
+
+renderContent("main");
+</script>
+</body>
+</html>
+,"PRISO MAIN","SE MAIN","TPM PRIMADORDIALS","SVE MAIN","AST MAIN","THA BOYS","DKE MAIN","AT CRIMSON","PE | MAIN","CRE PHANTOM"],
 bans: [
 {duration:"2 game days",teams:["SBD MAIN","SBD UNBO","RXU PHANTOMS"]},
 {duration:"3 game days",teams:["TNS","DSE"]}
